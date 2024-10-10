@@ -17,7 +17,6 @@ function getArrayParams(...arr) {
 	return {
 		min,
 		max,
-		sum,
 		avg: Number(avg.toFixed(2))
 	};
 }
@@ -86,27 +85,24 @@ function averageEvenElementsWorker(...arr) {
 
 
 
-function makeWork(func, arrOfArr) {
+function makeWork(arrOfArr, func) {
 	let maxWorkerResult = -Infinity;
 
 	for (let i = 0; i < arrOfArr.length; i++) {
-		const result = func(...arrOfArr[i]);
-		if (result > maxWorkerResult) {
-			maxWorkerResult = result;
-		}
+		 const result = func(...arrOfArr[i]);
+		 if (result > maxWorkerResult) {
+			  maxWorkerResult = result; 
+		 }
 	}
 
-	return maxWorkerResult;
+	return maxWorkerResult; 
 }
 
 
-const arr = [
-	[10, 10, 11, 20, 10],
-	[67, 10, 2, 39, 88],
-	[72, 75, 51, 87, 43],
-	[30, 41, 55, 96, 62]
-];
-console.log(makeWork(summElementsWorker, arr)); // максимум из 61, 206, 328, 284 => 328
-console.log(makeWork(differenceMaxMinWorker, arr)); // максимум из 10, 86, 44, 66 => 86
-console.log(makeWork(differenceEvenOddWorker, arr)); // максимум из 39, -6, -184, 92 => 92
-console.log(makeWork(averageEvenElementsWorker, arr)); // максимум из 12.5, 33.333, 72, 62.666 => 72
+
+
+const arr = [[10, 10, 11, 20, 10], [67, 10, 2, 39, 88], [72, 75, 51, 87, 43], [30, 41, 55, 96, 62]];
+console.log(makeWork(arr, summElementsWorker)); // максимум из 61, 206, 328, 284 => 328
+console.log(makeWork(arr, differenceMaxMinWorker)); // максимум из 10, 86, 44, 66 => 86
+console.log(makeWork(arr, differenceEvenOddWorker)); // максимум из 39, -6, -184, 92 => 92
+console.log(makeWork(arr, averageEvenElementsWorker)); // максимум из 12.5, 33.333, 72, 62.666 => 72
